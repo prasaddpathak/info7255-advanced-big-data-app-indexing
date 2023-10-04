@@ -1,11 +1,8 @@
-const express = require('express');
+import express from "express";
+import routes from './routes/index.js';
 
 const app = express();
+app.use(express.json());
+routes(app);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
+export default app;

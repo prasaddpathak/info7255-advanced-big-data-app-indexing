@@ -1,0 +1,11 @@
+# Health check
+GET http://localhost:3000
+
+### POST Plan API
+POST http://localhost:3000/v1/plan
+
+### GET Plan API
+GET http://localhost:3000/v1/plan/asdasdasdasdadssada
+
+### DELETE Plan API
+DELETE  http://localhost:3000/v1/plan/asdasdasdasdasdad
