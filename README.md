@@ -10,5 +10,5 @@
 
 ## Steps to run
 1. Download Redis Image
-2. Spin up Redis container `docker run --name csye7255-redis -d redis`
+2. Spin up Redis container `docker run  --name csye7255-redis -p 6379:6379 -d redis`
 3. Exec into Redis `docker exec -it csye7255-redis redis-cli`
