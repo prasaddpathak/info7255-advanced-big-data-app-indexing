@@ -1,0 +1,24 @@
+{
+  "name": "csye7255-advanced-big-data-app-indexing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prasaddpathak/csye7255-advanced-big-data-app-indexing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prasaddpathak/csye7255-advanced-big-data-app-indexing/issues"
+  },
+  "homepage": "https://github.com/prasaddpathak/csye7255-advanced-big-data-app-indexing#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
