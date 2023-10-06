@@ -61,5 +61,9 @@ content-type: application/json
 ### GET Plan API
 GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508
 
+### GET Plan API if-none-match
+GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508
+If-None-Match: "3c2-VM1bZGC+abpoUMtBeIjqZiobJLI"
+
 ### DELETE Plan API
 DELETE  http://localhost:3000/v1/plan/12xvxc345ssdsds-508

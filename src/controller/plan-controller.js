@@ -21,7 +21,13 @@ export const get = (req, res) => {
     console.log(Date().toString() + ' :: Received GET: /v1/plan/:id')
     client.get(req.params.id, (err, reply) => {
         if (err) return res.status(500).send(err);
-        if (reply) return res.send(JSON.parse(reply));
+        if (reply) {
+            const etag = '"' + req.params.id + '"';
+            if (req.headers['if-none-match'] === etag) {
+                return res.status(304).send();
+            }
+            return res.send(JSON.parse(reply));
+        }
         res.status(404).send('Data not found');
     });
 }
