@@ -8,6 +8,7 @@ router.route('/plan')
 
 router.route('/plan/:id')
     .get(planController.get)
-    .delete(planController.del);
+    .delete(planController.del)
+    .patch(planController.patch);
 
 export default router;
