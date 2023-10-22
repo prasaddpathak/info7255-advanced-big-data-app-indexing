@@ -1,3 +1,4 @@
+import { validate } from '../utils/gauth.js';
 import plan_router from './plan-router.js';
 
 export default (app) => {
@@ -6,6 +7,12 @@ export default (app) => {
     app.get('/', function (request, response) {
         console.log('------------------------------------')
         console.log(Date().toString() + ' :: Received GET: /')
+        response.sendStatus(200)
+    })
+
+    app.get('/validate', validate, function (request, response) {
+        console.log('------------------------------------')
+        console.log(Date().toString() + ' :: Received GET: /validate')
         response.sendStatus(200)
     })
 }

@@ -1,6 +1,7 @@
 import jsonschema from 'jsonschema';
 import plan from './../schema/plan.js';
 import {generateETag} from '../utils/hash.js';
+import { verifyIdToken } from '../utils/gauth.js';
 
 
 const val = new jsonschema.Validator();
@@ -19,7 +20,7 @@ export const post = async (req, res) => {
     res.send('Data saved successfully');
 }
 
-export const get = (req, res) => {
+export const get = async (req, res) => {
     console.log('------------------------------------')
     console.log(Date().toString() + ' :: Received GET: /v1/plan/:id')
     client.get(req.params.id, (err, reply) => {
