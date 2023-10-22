@@ -18,7 +18,6 @@ export const validate = async (req, res, next) => {
     }
     const token = req.headers['authorization'].split(' ')[1]; // Extract Bearer token
     try {
-        console.log("Verifying token " + token);
         const ticket = await verifyIdToken(token);
         const payload = ticket.getPayload();
         console.log(payload);

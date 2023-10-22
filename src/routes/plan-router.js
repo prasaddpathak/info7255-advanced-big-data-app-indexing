@@ -5,11 +5,11 @@ import { validate } from '../utils/gauth.js';
 const router = express.Router();
 
 router.route('/plan')
-    .post(planController.post);
+    .post(validate, planController.post);
 
 router.route('/plan/:id')
     .get(validate, planController.get)
-    .delete(planController.del)
-    .patch(planController.patch);
+    .delete(validate, planController.del)
+    .patch(validate, planController.patch);
 
 export default router;
