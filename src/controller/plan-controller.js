@@ -82,9 +82,14 @@ export const patch = (req, res) => {
                             updatedData[key].push(updatedItem);
                         }
                     });
+                } else if (typeof updatedData[key] === 'object' &&
+                            !Array.isArray(updatedData[key]) &&
+                            updatedData[key] !== null) {
+                    updatedData[key] = {...updatedData[key], ...req.body[key]};
                 } else {
                     updatedData[key] = req.body[key];
                 }
+
             });
 
             // Validated the updated Payload
