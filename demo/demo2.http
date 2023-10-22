@@ -1,6 +1,9 @@
 # Health check
 GET http://localhost:3000
 
+### POST Token
+POST http://localhost:3000/oauth/token
+
 ### POST Plan API
 POST http://localhost:3000/v1/plan
 content-type: application/json
@@ -60,6 +63,8 @@ content-type: application/json
 
 ### GET Plan API
 GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508
+Authorization: Bearer <token>
+
 
 ### GET Plan API if-none-match
 GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508

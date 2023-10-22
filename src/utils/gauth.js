@@ -20,7 +20,8 @@ export const validate = async (req, res, next) => {
     try {
         const ticket = await verifyIdToken(token);
         const payload = ticket.getPayload();
-        console.log(payload);
+        console.log('------------------------------------')
+        console.log(Date().toString() + ' :: Authorized ' + payload['email'])
         next();
     } catch (e) {
         console.log(e);

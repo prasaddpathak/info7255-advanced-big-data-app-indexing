@@ -1,7 +1,6 @@
 import jsonschema from 'jsonschema';
 import plan from './../schema/plan.js';
 import {generateETag} from '../utils/hash.js';
-import { verifyIdToken } from '../utils/gauth.js';
 
 
 const val = new jsonschema.Validator();
