@@ -77,7 +77,15 @@ export const patch = (req, res) => {
                     req.body[key].forEach(updatedItem => {
                         let index = updatedData[key].findIndex(item => item.objectId === updatedItem.objectId);
                         if (index !== -1) {
-                            updatedData[key][index] = {...updatedData[key][index], ...updatedItem};
+                            Object.keys(updatedItem).forEach(subKey => {
+                                if (typeof updatedData[key][index][subKey] === 'object' &&
+                                    !Array.isArray(updatedData[key][index][subKey]) &&
+                                    updatedData[key][index][subKey] !== null) {
+                                        updatedData[key][index][subKey] = {...updatedData[key][index][subKey], ...updatedItem[subKey]};
+                                } else {
+                                    updatedData[key][index][subKey] = updatedItem[subKey];
+                                }
+                            });
                         } else {
                             updatedData[key].push(updatedItem);
                         }
