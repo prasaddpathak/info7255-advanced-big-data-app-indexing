@@ -63,16 +63,36 @@ export const patch = (req, res) => {
     client.get(req.params.id, (err, reply) => {
         if (err) return res.status(500).send(err);
         if (reply) {
+
+            // Check Etag for If-Match Precondition
             const currentEtag = generateETag(reply);
             if (req.headers['if-match'] != currentEtag) {
                 return res.status(412).send();
             }
-            const updatedData = JSON.parse(reply);
-            Object.keys(req.body).forEach(key => {
-                updatedData[key] = req.body[key];
-            });
-            client.set(req.params.id, JSON.stringify(updatedData));
 
+            // Update Resource as per payload
+            let updatedData = JSON.parse(reply);
+            Object.keys(req.body).forEach(key => {
+                if (Array.isArray(updatedData[key])) {
+                    req.body[key].forEach(updatedItem => {
+                        let index = updatedData[key].findIndex(item => item.objectId === updatedItem.objectId);
+                        if (index !== -1) {
+                            updatedData[key][index] = {...updatedData[key][index], ...updatedItem};
+                        } else {
+                            updatedData[key].push(updatedItem);
+                        }
+                    });
+                } else {
+                    updatedData[key] = req.body[key];
+                }
+            });
+
+            // Validated the updated Payload
+            const result = val.validate(updatedData, plan);
+            if (!result.valid) return res.status(400).send(result.errors);
+
+            // Update resource on database and generate updated ETag
+            client.set(req.params.id, JSON.stringify(updatedData));
             const updatedEtag = generateETag(reply);
             res.setHeader('ETag', updatedEtag);
             return res.send(updatedData);
