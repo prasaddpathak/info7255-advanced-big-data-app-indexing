@@ -14,6 +14,8 @@ export const post = async (req, res) => {
     const result = val.validate(req.body, plan);
     if (!result.valid) return res.status(400).send(result.errors);
     client.set(req.body.objectId, JSON.stringify(req.body));
+    const createdEtag = generateETag(JSON.stringify(req.body));
+    res.setHeader('ETag', createdEtag);
     res.send('Data saved successfully');
 }
 
