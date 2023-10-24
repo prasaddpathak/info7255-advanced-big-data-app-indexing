@@ -2,16 +2,21 @@ import express from 'express';
 import { validate } from '../utils/gauth.js';
 import dotenv from 'dotenv/config';
 import {google} from 'googleapis';
+import { verifyIdToken } from '../utils/gauth.js';
 
 
 
 const router = express.Router();
 
 router.route('/validate')
-    .get(validate, function (request, response) {
+    .get(validate, async function (request, response) {
         console.log('------------------------------------')
         console.log(Date().toString() + ' :: Received GET: /oauth/validate')
-        response.sendStatus(200)
+        // Extract email from the token
+        const token = request.headers['authorization'].split(' ')[1];
+        const ticket = await verifyIdToken(token);
+        const payload = ticket.getPayload();
+        response.status(200).send('Welcome, ' + payload['email'])
     })
 
 router.route('/callback')

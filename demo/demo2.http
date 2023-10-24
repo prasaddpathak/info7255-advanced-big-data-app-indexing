@@ -4,6 +4,10 @@ GET http://localhost:3000
 ### POST Token
 POST http://localhost:3000/oauth/token
 
+### GET Validate
+GET http://localhost:3000/oauth/validate
+Authorization: Bearer <token>
+
 ### POST Plan API
 POST http://localhost:3000/v1/plan
 content-type: application/json
