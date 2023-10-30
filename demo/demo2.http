@@ -1,3 +1,5 @@
+@token = <add-token-here>
+
 # Health check
 GET http://localhost:3000
 
@@ -6,11 +8,12 @@ POST http://localhost:3000/oauth/token
 
 ### GET Validate
 GET http://localhost:3000/oauth/validate
-Authorization: Bearer <token>
+Authorization: Bearer {{token}}
 
 ### POST Plan API
 POST http://localhost:3000/v1/plan
 content-type: application/json
+Authorization: Bearer {{token}}
 
 {
 	"planCostShares": {
@@ -67,16 +70,17 @@ content-type: application/json
 
 ### GET Plan API
 GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508
-Authorization: Bearer <token>
-
+Authorization: Bearer {{token}}
 
 ### GET Plan API if-none-match
 GET http://localhost:3000/v1/plan/12xvxc345ssdsds-508
 If-None-Match: 3ee6b0fb63ba1499b3c011b4f73755fe
+Authorization: Bearer {{token}}
 
 ### PATCH Plan API
 PATCH  http://localhost:3000/v1/plan/12xvxc345ssdsds-508
 If-Match: 3ee6b0fb63ba1499b3c011b4f73755fe
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {
@@ -97,4 +101,5 @@ content-type: application/json
 
 ### DELETE Plan API
 DELETE  http://localhost:3000/v1/plan/12xvxc345ssdsds-508
-If-Match: 1df38d4fa49f827c5e9abb789914a1d9
+If-Match: 3ee6b0fb63ba1499b3c011b4f73755fe
+Authorization: Bearer {{token}}
