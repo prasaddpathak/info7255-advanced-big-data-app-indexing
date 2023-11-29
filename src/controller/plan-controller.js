@@ -13,7 +13,7 @@ export const post = async (req, res) => {
     console.log(Date().toString() + ' :: Received POST: /v1/plan')
     const result = val.validate(req.body, plan);
     if (!result.valid) return res.status(400).send(result.errors);
-    client.set(req.body.objectId, JSON.stringify(req.body));
+    client.sadd(req.body.objectType+":"+req.body.objectId, req.body);
     const createdEtag = generateETag(JSON.stringify(req.body));
     res.setHeader('ETag', createdEtag);
     res.send('Data saved successfully');

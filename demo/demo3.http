@@ -1,0 +1,2 @@
+# Elastic Health check
+GET http://localhost:9200/_cat/nodes?v&pretty
